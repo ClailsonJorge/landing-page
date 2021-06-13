@@ -4,47 +4,35 @@ import Button from 'components/Button'
 import { gaEvent } from 'utils/ga'
 
 import * as S from './styles'
+import { PricingBoxProps } from 'types/api'
+
+type Props = {
+  pricingBoxProps: PricingBoxProps
+}
 
 const onClick = () =>
   gaEvent({ action: 'click', category: 'buy', label: 'pricing box button' })
 
-const PricingBox = () => (
+const PricingBox = ({ pricingBoxProps }: Props) => (
   <S.Box>
     <S.Prices>
       <S.FullPrice>
-        De <span>R$549</span> por apenas
+        De <span>{pricingBoxProps.totalPrice}</span> por apenas
       </S.FullPrice>
       <S.DiscountPrice>
-        <span>6x de</span> R$75
+        <span>{`${pricingBoxProps.numberInstallment}x de`}</span>{' '}
+        {`R$${pricingBoxProps.priceInstallment}`}
       </S.DiscountPrice>
     </S.Prices>
-    <S.BenefitsList>
-      <S.BenefitsItem>
-        Acesso aos <strong>6 módulos</strong> assim que lançados
-      </S.BenefitsItem>
+    <S.BenefitsList
+      dangerouslySetInnerHTML={{ __html: pricingBoxProps.benefits }}
+    ></S.BenefitsList>
 
-      <S.BenefitsItem>
-        Código de <strong>todo o projeto</strong> separado em commits
-      </S.BenefitsItem>
-
-      <S.BenefitsItem>
-        Contato <strong>direto</strong> com os instrutores via Slack
-      </S.BenefitsItem>
-
-      <S.BenefitsItem>
-        <strong>Lives exclusivas</strong> durante o curso
-      </S.BenefitsItem>
-    </S.BenefitsList>
-
-    <Button
-      href="https://www.udemy.com/course/react-avancado/?couponCode=PROMOMAI21"
-      onClick={onClick}
-      withPrice
-    >
-      <p>Comprar o curso</p>
+    <Button href={pricingBoxProps.button.url} onClick={onClick} withPrice>
+      <p>{pricingBoxProps.button.title}</p>
       <div>
         <S.ButtonFullPrice>R$549</S.ButtonFullPrice>
-        <S.ButtonDiscountPrice>R$449</S.ButtonDiscountPrice>
+        <S.ButtonDiscountPrice>{`R$${pricingBoxProps.totalPrice}`}</S.ButtonDiscountPrice>
       </div>
     </Button>
   </S.Box>
