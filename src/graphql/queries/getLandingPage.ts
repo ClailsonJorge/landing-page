@@ -119,6 +119,16 @@ const GET_LANDING_PAGE = /* GraphQL */ `
     }
   }
 
+  fragment SectionFaq on LandingPage {
+    sectionFaq: SectionFaq {
+      title
+      questions {
+        answer
+        question
+      }
+    }
+  }
+
   query GET_LANDING_PAGE {
     landingPage {
       ...logo
@@ -131,6 +141,7 @@ const GET_LANDING_PAGE = /* GraphQL */ `
       ...PricingBox
       ...SectionAboutUs
       ...SectionReviews
+      ...SectionFaq
     }
   }
 `
