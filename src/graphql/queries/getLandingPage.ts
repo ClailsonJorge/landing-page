@@ -21,8 +21,8 @@ const GET_LANDING_PAGE = /* GraphQL */ `
     }
   }
 
-  fragment sectionAboutProject on LandingPage {
-    SectionAboutProject {
+  fragment SectionAboutProject on LandingPage {
+    sectionAboutProject: SectionAboutProject {
       title
       image {
         alternativeText
@@ -33,7 +33,7 @@ const GET_LANDING_PAGE = /* GraphQL */ `
   }
 
   fragment SectionTech on LandingPage {
-    SectionTech {
+    sectionTech: SectionTech {
       title
       techs {
         image {
@@ -45,12 +45,34 @@ const GET_LANDING_PAGE = /* GraphQL */ `
     }
   }
 
+  fragment SectionConcepts on LandingPage {
+    sectionConcepts: SectionConcepts {
+      title
+      concepts {
+        concept
+      }
+    }
+  }
+
+  fragment SectionModules on LandingPage {
+    sectionModules: SectionModules {
+      title
+      module {
+        title
+        subTitle
+        description
+      }
+    }
+  }
+
   query GET_LANDING_PAGE {
     landingPage {
       ...logo
       ...header
-      ...sectionAboutProject
+      ...SectionAboutProject
       ...SectionTech
+      ...SectionConcepts
+      ...SectionModules
     }
   }
 `
