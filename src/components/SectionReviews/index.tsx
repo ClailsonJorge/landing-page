@@ -5,8 +5,8 @@ import Container from 'components/Container'
 import Heading from 'components/Heading'
 import ReviewCard from 'components/ReviewCard'
 
-import reviews from './content'
 import * as S from './styles'
+import { SectionReviewsProps } from 'types/api'
 
 const settings = {
   dots: true,
@@ -30,17 +30,21 @@ const settings = {
   ]
 }
 
-const SectionReviews = () => (
+type Props = {
+  sectionProps: SectionReviewsProps
+}
+
+const SectionReviews = ({ sectionProps }: Props) => (
   <Container>
-    <Heading reverseColor>Junte-se a mais de 200 mil alunos</Heading>
+    <Heading reverseColor>{sectionProps.title}</Heading>
 
     <S.Content>
       <Slider {...settings}>
-        {reviews.map(({ name, image, description }, index) => (
+        {sectionProps.review.map(({ title, photo, description }, index) => (
           <ReviewCard
             key={index}
-            name={name}
-            image={image}
+            name={title}
+            image={photo.url}
             description={description}
             id={index}
           />
