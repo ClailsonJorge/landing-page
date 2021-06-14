@@ -30,17 +30,13 @@ const settings = {
   ]
 }
 
-type Props = {
-  sectionProps: SectionReviewsProps
-}
-
-const SectionReviews = ({ sectionProps }: Props) => (
+const SectionReviews = ({ title, review }: SectionReviewsProps) => (
   <Container>
-    <Heading reverseColor>{sectionProps.title}</Heading>
+    <Heading reverseColor>{title}</Heading>
 
     <S.Content>
       <Slider {...settings}>
-        {sectionProps.review.map(({ title, photo, description }, index) => (
+        {review.map(({ title, photo, description }, index) => (
           <ReviewCard
             key={index}
             name={title}
