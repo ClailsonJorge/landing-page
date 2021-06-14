@@ -6,16 +6,12 @@ import Heading from 'components/Heading'
 import * as S from './styles'
 import { SectionConceptsProps } from 'types/api'
 
-type Props = {
-  sectionProps: SectionConceptsProps
-}
-
-const SectionConcepts = ({ sectionProps }: Props) => (
+const SectionConcepts = ({ title, concepts }: SectionConceptsProps) => (
   <Container>
     <S.Box>
-      <Heading lineBottom>{sectionProps.title}</Heading>
+      <Heading lineBottom>{title}</Heading>
       <S.List>
-        {sectionProps.concepts.map(({ concept }) => (
+        {concepts.map(({ concept }) => (
           <S.Item key={concept}>{concept}</S.Item>
         ))}
       </S.List>

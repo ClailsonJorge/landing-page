@@ -7,16 +7,12 @@ import * as S from './styles'
 import { SectionTechProps } from 'types/api'
 import getImageUrl from 'utils/getImageUrl'
 
-type Props = {
-  sectionProps: SectionTechProps
-}
-
-const SectionTech = ({ sectionProps }: Props) => (
+const SectionTech = ({ title, techs }: SectionTechProps) => (
   <S.Wrapper>
     <Container>
-      <Heading reverseColor>{sectionProps.title}</Heading>
+      <Heading reverseColor>{title}</Heading>
       <S.IconsContainer>
-        {sectionProps.techs.map(({ tech, image }) => (
+        {techs.map(({ tech, image }) => (
           <S.Icon key={tech}>
             <S.Icons src={getImageUrl(image.url)} alt={tech} loading="lazy" />
             <S.IconsName>{tech}</S.IconsName>
