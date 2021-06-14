@@ -42,7 +42,7 @@ const Index = ({
       <PricingBox {...pricingBox} />
       <SectionAboutUs {...sectionAboutUs} />
       <SectionReviews {...sectionReviews} />
-      <SectionFaq sectionProps={sectionFaq} />
+      <SectionFaq {...sectionFaq} />
       <Footer />
       <JsonSchema />
     </>
