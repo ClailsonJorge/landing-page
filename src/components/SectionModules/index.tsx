@@ -7,16 +7,12 @@ import CardModule from 'components/CardModule'
 import * as S from './styles'
 import { SectionModulesProps } from 'types/api'
 
-type Props = {
-  sectionProps: SectionModulesProps
-}
-
-const SectionModules = ({ sectionProps }: Props) => (
+const SectionModules = ({ title, module }: SectionModulesProps) => (
   <Container>
-    <Heading reverseColor>{sectionProps.title}</Heading>
+    <Heading reverseColor>{title}</Heading>
 
     <S.Content>
-      {sectionProps.module.map(({ title, subTitle, description }, index) => (
+      {module.map(({ title, subTitle, description }, index) => (
         <CardModule key={index} title={title} subTitle={subTitle}>
           <div dangerouslySetInnerHTML={{ __html: description }} />
         </CardModule>
