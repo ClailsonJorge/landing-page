@@ -6,33 +6,34 @@ import { gaEvent } from 'utils/ga'
 import * as S from './styles'
 import { PricingBoxProps } from 'types/api'
 
-type Props = {
-  pricingBoxProps: PricingBoxProps
-}
-
 const onClick = () =>
   gaEvent({ action: 'click', category: 'buy', label: 'pricing box button' })
 
-const PricingBox = ({ pricingBoxProps }: Props) => (
+const PricingBox = ({
+  button,
+  benefits,
+  numberInstallment,
+  priceInstallment,
+  totalPrice
+}: PricingBoxProps) => (
   <S.Box>
     <S.Prices>
       <S.FullPrice>
-        De <span>{pricingBoxProps.totalPrice}</span> por apenas
+        De <span>{totalPrice}</span> por apenas
       </S.FullPrice>
       <S.DiscountPrice>
-        <span>{`${pricingBoxProps.numberInstallment}x de`}</span>{' '}
-        {`R$${pricingBoxProps.priceInstallment}`}
+        <span>{`${numberInstallment}x de`}</span> {`R$${priceInstallment}`}
       </S.DiscountPrice>
     </S.Prices>
     <S.BenefitsList
-      dangerouslySetInnerHTML={{ __html: pricingBoxProps.benefits }}
+      dangerouslySetInnerHTML={{ __html: benefits }}
     ></S.BenefitsList>
 
-    <Button href={pricingBoxProps.button.url} onClick={onClick} withPrice>
-      <p>{pricingBoxProps.button.title}</p>
+    <Button href={button.url} onClick={onClick} withPrice>
+      <p>{button.title}</p>
       <div>
         <S.ButtonFullPrice>R$549</S.ButtonFullPrice>
-        <S.ButtonDiscountPrice>{`R$${pricingBoxProps.totalPrice}`}</S.ButtonDiscountPrice>
+        <S.ButtonDiscountPrice>{`R$${totalPrice}`}</S.ButtonDiscountPrice>
       </div>
     </Button>
   </S.Box>
