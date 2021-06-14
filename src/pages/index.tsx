@@ -34,7 +34,7 @@ const Index = ({
   return (
     <>
       <SectionHero logo={logo} header={header} />
-      <SectionAboutProject sectionProps={sectionAboutProject} />
+      <SectionAboutProject {...sectionAboutProject} />
       <SectionTech sectionProps={sectionTech} />
       <SectionConcepts sectionProps={sectionConcepts} />
       <SectionModules sectionProps={sectionModules} />
