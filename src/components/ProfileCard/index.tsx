@@ -7,9 +7,9 @@ import * as S from './styles'
 import getImageUrl from 'utils/getImageUrl'
 
 const icons = {
-  Twitter: <FaTwitter />,
-  GitHub: <GrGithub />,
-  Dribbble: <FaDribbble />
+  twitter: <FaTwitter />,
+  github: <GrGithub />,
+  dribbble: <FaDribbble />
 }
 
 type socialLinks = {
@@ -33,28 +33,14 @@ const ProfileCard: React.FC<Props> = ({
   description
 }) => (
   <S.Card key={name}>
-    <S.Image>
-      <source
-        srcSet={require(`@images/authors/${name
-          .split(' ')[0]
-          .toLowerCase()}.png?webp`)}
-        type="image/webp"
-      />
-      <source
-        srcSet={require(`@images/authors/${name
-          .split(' ')[0]
-          .toLowerCase()}.png`)}
-        type="image/png"
-      />
-      <img src={getImageUrl(image)} loading="lazy" alt={name} />
-    </S.Image>
+    <S.Image src={getImageUrl(image)} loading="lazy" alt={name} />
     <S.Name>{name}</S.Name>
     <S.Role>{role}</S.Role>
     <S.SocialLinks>
       {socialLinks.map((item) => (
         <S.Link key={item.url}>
           <a href={item.url} title={item.title}>
-            {icons[item.title]}
+            {icons[item.title.toLowerCase()]}
           </a>
         </S.Link>
       ))}
